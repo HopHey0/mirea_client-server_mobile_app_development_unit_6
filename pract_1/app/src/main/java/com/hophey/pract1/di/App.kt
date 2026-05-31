@@ -5,6 +5,7 @@ import com.hophey.pract1.data.network.HttpClient
 import com.hophey.pract1.data.repository.PhotoRepositoryImpl
 import com.hophey.pract1.domain.repository.PhotoRepository
 import com.hophey.pract1.domain.useCase.GetPhotosListUseCase
+import com.hophey.pract1.domain.useCase.SavePhotoUseCase
 import com.hophey.pract1.presentation.ui.viewModel.PhotoGridViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -18,8 +19,9 @@ class App : Application(){
         single<PhotoRepository> { PhotoRepositoryImpl(api) }
 
         factory { GetPhotosListUseCase(get()) }
+        factory { SavePhotoUseCase() }
 
-        viewModel { PhotoGridViewModel(get()) }
+        viewModel { PhotoGridViewModel(get(), get()) }
     }
 
 

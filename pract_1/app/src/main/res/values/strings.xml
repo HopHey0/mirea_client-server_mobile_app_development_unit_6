@@ -3,4 +3,7 @@
 
     <string name="top_photos_screen_bar_label">Фото</string>
     <string name="retry_button_text">Повторить</string>
+    <string name="detailed_photo_description_author">Автор: </string>
+    <string name="detailed_photo_description_dimensions">Размер: </string>
+    <string name="download_button_text">Скачать</string>
 </resources>
