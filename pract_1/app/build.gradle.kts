@@ -55,4 +55,26 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    // ViewModel dependency
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Navigation dependency
+    implementation(libs.androidx.navigation.compose)
+
+    // JSON serialization dependency
+    implementation(libs.kotlinx.serialization.json)
+
+    // Koin
+    implementation("io.insert-koin:koin-android:4.2.1")
+    implementation("io.insert-koin:koin-androidx-compose:4.2.1")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-kotlinx-serialization:3.0.0")
+    implementation("com.squareup.okhttp3:okhttp:5.3.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.3.2")
+
+    // Coil
+    implementation("io.coil-kt.coil3:coil-compose:3.4.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.4.0")
 }
