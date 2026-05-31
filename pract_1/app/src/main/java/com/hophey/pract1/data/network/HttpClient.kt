@@ -22,16 +22,17 @@ object HttpClient {
         .writeTimeout(15, TimeUnit.SECONDS)
         .build()
 
+    private val json = Json {
+        isLenient = true
+        ignoreUnknownKeys = true
+        prettyPrint = true
+    }
+
     val api: ApiService by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(
-                Json {
-                    ignoreUnknownKeys = true
-                    prettyPrint = true
-                }.asConverterFactory("application/json".toMediaType())
-            )
+            .addConverterFactory(json.asConverterFactory("application/json; charset=UTF8".toMediaType()))
             .build()
             .create(ApiService::class.java)
     }
