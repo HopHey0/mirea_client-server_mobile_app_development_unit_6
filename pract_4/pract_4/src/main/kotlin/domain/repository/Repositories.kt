@@ -6,10 +6,18 @@ import domain.entity.User
 
 interface NobelPrizeRepository {
     fun getAllPrizes(): List<NobelPrize>
-    fun getPrize(year: String, category: String): NobelPrize?
-    fun getLaureates(year: String, category: String): List<Laureate>?
+    fun getPrizeById(id: Int): NobelPrize?
+    fun getLaureatesByPrizeId(prizeId: Int): List<Laureate>
 }
 
 interface UserRepository {
     fun findByUsername(username: String): User?
+    fun findById(id: Int): User?
+}
+
+interface UserPrizeRepository {
+    fun getFavorites(userId: Int): List<NobelPrize>
+    fun addFavorite(userId: Int, prizeId: Int): Boolean
+    fun removeFavorite(userId: Int, prizeId: Int): Boolean
+    fun isFavorite(userId: Int, prizeId: Int): Boolean
 }

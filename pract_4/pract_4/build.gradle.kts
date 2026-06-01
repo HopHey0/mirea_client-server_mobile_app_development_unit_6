@@ -16,9 +16,6 @@ kotlin {
 }
 dependencies {
     implementation(ktorLibs.server.config.yaml)
-    implementation(ktorLibs.server.core)
-    implementation(ktorLibs.server.netty)
-    implementation(libs.logback.classic)
 
     val ktor_version = "2.3.10"
     val logback_version = "1.4.14"
@@ -33,6 +30,16 @@ dependencies {
     implementation("io.ktor:ktor-server-status-pages-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
     implementation("com.auth0:java-jwt:4.4.0")
+
+    implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("org.jetbrains.exposed:exposed-core:0.53.0")
+    implementation("org.jetbrains.exposed:exposed-dao:0.53.0")
+    implementation("org.jetbrains.exposed:exposed-jdbc:0.53.0")
+    implementation("org.jetbrains.exposed:exposed-java-time:0.53.0")
+
+    implementation("io.github.smiley4:ktor-openapi:5.0.0")
+    implementation("io.github.smiley4:ktor-swagger-ui:5.0.0")
 
     testImplementation(kotlin("test"))
     testImplementation(ktorLibs.server.testHost)
