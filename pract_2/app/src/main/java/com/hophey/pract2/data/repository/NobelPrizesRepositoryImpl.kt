@@ -8,7 +8,7 @@ import com.hophey.pract2.domain.repository.NobelPrizesRepository
 class NobelPrizesRepositoryImpl(
     private val api: NobelPrizesApi
 ) : NobelPrizesRepository {
-    override suspend fun getNobelPrizesByYearAndCategory(query: String): Result<List<NobelPrize>> = runCatching {
-        api.getNobelPrizesByParams(query).nobelPrizes.map { it.toEntity() }
+    override suspend fun getNobelPrizesByYearAndCategory(year: String): Result<List<NobelPrize>> = runCatching {
+        api.getNobelPrizesByParams(year).nobelPrizes.map { it.toEntity() }
     }
 }

@@ -9,9 +9,17 @@ import io.ktor.client.request.parameter
 class NobelPrizesApi(
     private val client: HttpClient
 ) {
-    suspend fun getNobelPrizesByParams(query: String): NobelPrizesResponse{
+    suspend fun getNobelPrizesByParams(
+        year: String? = null,
+        limit: Int = 25,
+        offset: Int = 0
+    ): NobelPrizesResponse {
         return client
-            .get { parameter("q", query) }
+            .get("nobelPrizes") {
+                parameter("limit", limit)
+                parameter("offset", offset)
+                year?.let { parameter("nobelPrizeYear", it) }
+            }
             .body()
     }
 }
