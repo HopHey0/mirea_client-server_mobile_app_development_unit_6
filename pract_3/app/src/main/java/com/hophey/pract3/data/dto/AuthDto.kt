@@ -18,7 +18,6 @@ data class LoginResponseDto(
     val firstName: String,
     val lastName: String,
     val image: String,
-    val token: String,
-    @SerialName("refreshToken")
+    val accessToken: String,
     val refreshToken: String = ""
 )

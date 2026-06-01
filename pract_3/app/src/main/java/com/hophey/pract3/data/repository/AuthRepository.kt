@@ -7,9 +7,6 @@ import com.hophey.pract3.data.network.Api
 import com.hophey.pract3.domain.entity.AuthResult
 import com.hophey.pract3.domain.entity.User
 import com.hophey.pract3.domain.repository.AuthRepository
-import io.ktor.client.plugins.ClientRequestException
-import io.ktor.client.plugins.ServerResponseException
-import java.io.IOException
 
 
 class AuthRepositoryImpl (
@@ -20,7 +17,7 @@ class AuthRepositoryImpl (
     override suspend fun login(username: String, password: String): Result<AuthResult> = runCatching {
         val response = api.login(LoginRequestDto(username = username, password = password))
         val authResult = AuthResult(
-            token = response.token,
+            token = response.accessToken,
             user = User(
                 id = response.id,
                 firstName = response.firstName,
@@ -28,10 +25,10 @@ class AuthRepositoryImpl (
                 username = response.username,
                 email = response.email,
                 image = response.image,
-                token = response.token
+                token = response.accessToken
             )
         )
-        tokenDataStore.saveToken(response.token)
+        tokenDataStore.saveToken(response.accessToken)
         authResult
     }
 
