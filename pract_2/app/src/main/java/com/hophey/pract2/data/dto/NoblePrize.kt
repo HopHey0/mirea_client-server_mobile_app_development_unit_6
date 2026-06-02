@@ -11,32 +11,29 @@ data class NobelPrizesResponse(
 
 @Serializable
 data class NobelPrizeDto(
+    val id: Int,
     val awardYear: String,
-    val category: LocalizedStringDto,
-    val laureates: List<LaureateShortDto> = emptyList()
+    val category: String,
+    val detailLink: String,
+    val laureates: List<LaureateDto>
+)
+
+@Serializable
+data class LaureateDto(
+    val id: Int,
+    val prizeId: Int,
+    val fullName: String,
+    val motivation: String
 )
 
 fun NobelPrizeDto.toEntity() = NobelPrize(
-    awardYear = this.awardYear,
-    category = this.category.en,
-    laureates = this.laureates.map { dtoLaureate -> dtoLaureate.toEntity() }
+    awardYear = awardYear,
+    category = category,
+    laureates = laureates.map { it.toEntity() }
 )
 
-@Serializable
-data class LocalizedStringDto(
-    val en: String
-)
-
-@Serializable
-data class LaureateShortDto(
-    val id: String,
-    val fullName: LocalizedStringDto? = null,
-    val orgName: LocalizedStringDto? = null,
-    val motivation: LocalizedStringDto? = null
-)
-
-fun LaureateShortDto.toEntity() = Laureate(
-    id = this.id,
-    fullName = this.fullName?.en ?: "",
-    motivation = this.motivation?.en ?: ""
+fun LaureateDto.toEntity() = Laureate(
+    id = id.toString(),
+    fullName = fullName,
+    motivation = motivation
 )

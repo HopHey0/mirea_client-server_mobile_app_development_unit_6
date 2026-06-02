@@ -15,10 +15,9 @@ class NobelPrizesApi(
         offset: Int = 0
     ): NobelPrizesResponse {
         return client
-            .get("nobelPrizes") {
+            .get("/prizes/year/$year") {
                 parameter("limit", limit)
                 parameter("offset", offset)
-                year?.let { parameter("nobelPrizeYear", it) }
             }
             .body()
     }
