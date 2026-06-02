@@ -8,6 +8,7 @@ interface NobelPrizeRepository {
     fun getAllPrizes(): List<NobelPrize>
     fun getPrizeById(id: Int): NobelPrize?
     fun getLaureatesByPrizeId(prizeId: Int): List<Laureate>
+    fun getPrizeByYear(year: String): List<NobelPrize>
 }
 
 interface UserRepository {

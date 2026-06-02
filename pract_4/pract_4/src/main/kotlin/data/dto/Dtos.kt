@@ -35,7 +35,10 @@ data class NobelPrizeResponse(
     val detailLink: String,
     val laureates: List<LaureateResponse>
 )
-
+@Serializable
+data class NobelPrizesResponse(
+    val nobelPrizes: List<NobelPrizeResponse>
+)
 @Serializable
 data class UserProfileResponse(
     val id: Int,
